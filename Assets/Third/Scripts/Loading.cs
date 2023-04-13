@@ -109,13 +109,19 @@ public class Loading : MonoBehaviour
             View.ReferenceRectTransform.anchorMin = anchorMin;
             View.ReferenceRectTransform.anchorMax = anchorMax;
 
-            View.Show();
             View.UpdateFrame();
         };
 
         View.OnPageFinished += (browser, code, url) =>
         {
-            
+            if(code == 404)
+            {
+                Screen.orientation = ScreenOrientation.Portrait;
+                UnityEngine.SceneManagement.SceneManager.LoadScene(1);
+                return;
+            }
+
+            View.Show();
         };
     }
 
