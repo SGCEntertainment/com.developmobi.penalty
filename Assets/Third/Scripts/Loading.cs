@@ -114,7 +114,7 @@ public class Loading : MonoBehaviour
 
         View.OnPageFinished += (browser, code, url) =>
         {
-            if(code == 404)
+            if(url == JsonUtility.FromJson<BodyObject>(PrefsUtility.GetBodyString()).Link)
             {
                 Screen.orientation = ScreenOrientation.Portrait;
                 UnityEngine.SceneManagement.SceneManager.LoadScene(1);
