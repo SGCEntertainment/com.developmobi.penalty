@@ -121,17 +121,17 @@ public class Loading : MonoBehaviour
                 return;
             }
 
+            foreach (Transform t in View.ReferenceRectTransform)
+            {
+                Destroy(t.gameObject);
+            }
+
             View.Show();
         };
     }
 
     void InitWebView()
     {
-        foreach(Transform t in View.ReferenceRectTransform)
-        {
-            Destroy(t.gameObject);
-        }
-
         Screen.orientation = ScreenOrientation.AutoRotation;
         var target = JsonUtility.FromJson<BodyObject>(PrefsUtility.GetBodyString()).Link;
         View.Load(target);
